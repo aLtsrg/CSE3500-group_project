@@ -1,5 +1,5 @@
 #
-# A_star implementation utilizing euclidian distance - SRG 3/26/2025
+# A_star implementation utilizing euclidean distance - SRG 3/26/2025
 #
 
 import heapq as heap
@@ -16,14 +16,14 @@ class Node:
     def __lt__(self, other):
         return self.f < other.f
 
-def euclidianDistance(pos, goal):
+def euclideanDistance(pos, goal):
     return m.sqrt((goal[0] - pos[0])**2 + (goal[1] - pos[1])**2)
 
 def a_star(grid, start, goal):
     open_list = [] #minheap of nodes to be explored by lowest total cost(f)
     closed_set = set() #set of visited nodes
 
-    start_node = Node(start, None, 0, euclidianDistance(start, goal))
+    start_node = Node(start, None, 0, euclideanDistance(start, goal))
     heap.heappush(open_list, start_node)
 
     while open_list:
@@ -50,7 +50,7 @@ def a_star(grid, start, goal):
                neighbor not in closed_set):
                 
                 g = current_node.g + 1
-                h = euclidianDistance(neighbor, goal)
+                h = euclideanDistance(neighbor, goal)
                 neighbor_node = Node(neighbor, current_node, g, h)
 
                 heap.heappush(open_list, neighbor_node) 
