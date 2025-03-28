@@ -1,5 +1,5 @@
 #
-# A_implementation utilizing euclidian distance - SRG 3/26/2025
+# A_star implementation utilizing euclidian distance - SRG 3/26/2025
 #
 
 import heapq as heap
@@ -51,7 +51,7 @@ def a_star(grid, start, goal):
                 h = euclidianDistance(neighbor, goal)
                 neighbor_node = Node(neighbor, current_node, g, h)
 
-                heap.heappush(open_list, neighbor_node) #add neigbor into 
+                heap.heappush(open_list, neighbor_node) 
     return None
 
 
