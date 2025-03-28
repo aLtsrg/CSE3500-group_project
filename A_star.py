@@ -31,6 +31,7 @@ def a_star(grid, start, goal):
 
         if current_node.position == goal: #if path is found 
             path = [] 
+            
             #constructs a path by going backwards through the parents and reversing path
             while current_node:
                 path.append(current_node.position)
@@ -39,6 +40,7 @@ def a_star(grid, start, goal):
         
         closed_set.add(current_node.position)
 
+        #find and add all valid neighbors to open_list
         for x, y in [(-1, 0),(1, 0),(0, -1),(0, 1)]: #iterate through all possible neighbors
             neighbor = (current_node.position[0] + x, current_node.position[1] + y)
 
