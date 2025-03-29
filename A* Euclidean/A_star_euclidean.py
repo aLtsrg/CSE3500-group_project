@@ -41,7 +41,7 @@ def a_star(grid, start, goal):
         closed_set.add(current_node.position)
 
         #find and add all valid neighbors to open_list
-        for x, y in [(-1, 0),(1, 0),(0, -1),(0, 1)]: #iterate through all possible neighbors
+        for x, y in [(-1, 0),(1, 0),(0, -1),(0, 1)]: #iterate through all possible neighbors could add diag moves with eg. (1,1)
             neighbor = (current_node.position[0] + x, current_node.position[1] + y)
 
             if(0 <= neighbor[0] < len(grid) and #check if neighbor within grid bounds, is not obstacle, has not been visited
