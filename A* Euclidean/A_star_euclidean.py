@@ -1,9 +1,11 @@
 #
 # A_star implementation utilizing euclidean distance - SRG 3/26/2025
+# added grid generation and fixed bug where nodes were being checked more than once 4/24/2025
 #
 
 import heapq as heap
 import math as m
+import random
 
 class Node:
     def __init__(self, position, parent=None, g=0, h=0):
@@ -29,6 +31,9 @@ def a_star(grid, start, goal):
     while open_list:
         current_node = heap.heappop(open_list) #get node with lowest f
 
+        if current_node.position in closed_set:
+            continue
+
         if current_node.position == goal: #if path is found 
             path = [] 
             
@@ -44,8 +49,8 @@ def a_star(grid, start, goal):
         for x, y in [(-1, 0),(1, 0),(0, -1),(0, 1)]: #iterate through all possible neighbors could add diag moves with eg. (1,1)
             neighbor = (current_node.position[0] + x, current_node.position[1] + y)
 
-            if(0 <= neighbor[0] < len(grid) and #check if neighbor within grid bounds, is not obstacle, has not been visited
-               0 <= neighbor[1] < len(grid[0]) and
+            if(0 <= neighbor[0] < len(grid[1]) and #check if neighbor within grid bounds, is not obstacle, has not been visited
+               0 <= neighbor[1] < len(grid) and
                grid[neighbor[1]][neighbor[0]] == 0 and
                neighbor not in closed_set):
                 
@@ -57,16 +62,18 @@ def a_star(grid, start, goal):
     return None
 
 
+def create_grid(rows, cols):
+    # Create a 2D array
+    grid = [[random.choices([0, 1], weights=[100, 0])[0] for _ in range(cols)] for _ in range(rows)]
+    return grid
+
+
 if __name__ == "__main__":
-    grid = [
-        [0,0,0,0],
-        [1,1,0,0],
-        [0,0,1,0],
-        [0,0,0,0],
-    ]
+    grid = create_grid(30, 30)
+    
 
     start = (0, 0)
-    goal = (3, 3)
+    goal = (29, 29)
     path = a_star(grid, start, goal)
 
     if path:
