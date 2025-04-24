@@ -15,7 +15,7 @@ def visualize_grid(grid, visited=None, path=None, start=None, goal=None, final =
 
     if path:
         for x, y in path:
-            display_grid[y][x] = 1  # final path = darker gray
+            display_grid[y][x] = 1  # final path = white
             clear = False
 
     if start:
